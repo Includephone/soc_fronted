@@ -82,7 +82,6 @@ const getFriendList=(id)=>(dispatch)=>{
         id
     })
     .then((res)=>{
-        console.log(res.data.result);
         dispatch({
             type:'GET_FRIEND_LIST',
             payload: res.data.result

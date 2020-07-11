@@ -17,7 +17,7 @@ const FriendsPage=({items, id})=>{
                     name = item.user1.name
                 )
                 return(
-                    <Link to={`/user/${linkId}`}>{name}</Link>
+                    <Link to={`/user/${linkId}`} key={item._id}>{name}</Link>
                 )
             })}
         </ul>

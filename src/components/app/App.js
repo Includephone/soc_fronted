@@ -9,6 +9,7 @@ import {Provider} from 'react-redux';
 import SearchPage from '../pages/search-page';
 import UserPageContainer from '../pages/user-page';
 import FriendsPageContainer from '../pages/friends-page';
+import MessagePageContainer from '../pages/messages-page';
 import AuthRoute from '../../utils/authRoute';
 import setAuthToken from '../../utils/setAuthToken';
 import { logOutUser, setCurrentUser } from '../../actions';
@@ -36,6 +37,7 @@ const App=()=>{
           <AuthRoute path="/search" component={SearchPage}/>
           <AuthRoute path="/user/:id" component={UserPageContainer}/>
           <AuthRoute path="/friends" component={FriendsPageContainer}/>
+          <AuthRoute path="/messages" component={MessagePageContainer}/>
         </Router>
       </div>
     </Provider>
