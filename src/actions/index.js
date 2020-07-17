@@ -1,6 +1,6 @@
 import {registerUser, loginUser, logOutUser, setCurrentUser} from './auth';
 import {searchUser, profileInfo, getFriendStatus, updateFriendStatus, addToFriends, getFriendList} from './user';
-import {getConservation} from './message';
+import {getDialogs, getMessagesList, newMessage} from './message';
 
 export {
     registerUser,
@@ -13,5 +13,7 @@ export {
     updateFriendStatus,
     addToFriends,
     getFriendList,
-    getConservation
+    getDialogs,
+    getMessagesList,
+    newMessage
 };

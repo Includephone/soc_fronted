@@ -1,29 +1,38 @@
+/* eslint-disable */
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {getConservation} from '../../../actions';
+import useInterval from 'react-useinterval';
+import {getDialogs, getMessagesList, newMessage} from '../../../actions';
 import MessagePage from './message-page';
 
-const MessagePageContainer=({conservationList, id, getConservation})=>{
+const MessagePageContainer=({dialogList, id, messageList, getDialogs, getMessagesList, newMessage})=>{
     const [loading, changeLoading] = useState(true);
     useEffect(()=>{
-        conservationList.length>0? changeLoading(false) : getConservation(id)
-    }, [conservationList]);
+        dialogList.length>0? changeLoading(false) : getDialogs(id)
+    }, [dialogList]);
+    useInterval(()=>{
+        getDialogs(id);
+        messageList.length>0? (getMessagesList(messageList[0].dialog._id, id), console.log('getNewMessages')) : null;
+    }, 3000);
     return (
-    loading? (<h2>Message Loading</h2>) : (<MessagePage conservationList={conservationList} id={id}/>)
+    loading? (<h2>Message Loading</h2>) : (<MessagePage dialogList={dialogList} id={id} messageList={messageList} getMessagesList={getMessagesList} newMessage={newMessage}/>)
     );
 }
 
 const mapStateToProps=(state)=>{
     return{
         id: state.auth.user.id,
-        conservationList: state.message.conservationList
+        dialogList: state.message.dialogList,
+        messageList: state.message.messageList
     }
 }
 
 const mapDispatchToProps=(dispatch)=>{
     return bindActionCreators({
-        getConservation
+        getDialogs,
+        getMessagesList,
+        newMessage
     }, dispatch);
 }
 

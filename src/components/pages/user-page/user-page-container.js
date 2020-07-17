@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import UserPage from './user-page';
-import {profileInfo, getFriendStatus, updateFriendStatus, addToFriends} from '../../../actions';
+import {profileInfo, getFriendStatus, updateFriendStatus, addToFriends, newMessage} from '../../../actions';
 
-const UserPageContainer=({profile, yourId, match, profileInfo, getFriendStatus, updateFriendStatus, addToFriends})=>{
+const UserPageContainer=({profile, yourId, match, profileInfo, getFriendStatus, updateFriendStatus, addToFriends, newMessage})=>{
     const [loading, changeLoading] = useState(true);
     const id = match.params.id;
     useEffect(()=>{
@@ -51,7 +51,7 @@ const UserPageContainer=({profile, yourId, match, profileInfo, getFriendStatus, 
     }
     return(
         loading? (<h2>Profile is not loading</h2>)
-        : (<UserPage profile={profile} friendStatus={friendStatus(profile)}/>)
+        : (<UserPage profile={profile} friendStatus={friendStatus(profile)} newMessage={newMessage} yourId={yourId}/>)
     )
 }
 
@@ -67,7 +67,8 @@ const mapDispatchToProps=(dispatch)=>{
         profileInfo,
         getFriendStatus,
         updateFriendStatus,
-        addToFriends
+        addToFriends,
+        newMessage
     }, dispatch)
 }
 

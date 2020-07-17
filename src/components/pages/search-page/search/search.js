@@ -12,9 +12,9 @@ const Search = ({searchUser})=>{
         });
     }
     return(
-        <form onSubmit={onSubmit}>
-            <input type="text" name="search" value={value} onChange={(e)=>changeValue(e.target.value)}/>
-            <button>Search</button>
+        <form className="form-inline justify-content-center" onSubmit={onSubmit}>
+            <input className="form-control w-75" type="text" name="search" value={value} onChange={(e)=>changeValue(e.target.value)}/>
+            <button className="btn btn-primary ml-2">Search</button>
         </form>
     )
 }

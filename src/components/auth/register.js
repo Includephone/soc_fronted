@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import {registerUser} from '../../actions';
 
-const Register=({registerUser})=>{
+const Register=({registerUser, isAuth, history})=>{
     const [name, changeName] = useState('');
     const [email, changeEmail] = useState('');
     const [password, changePassword] = useState('');
@@ -16,6 +17,9 @@ const Register=({registerUser})=>{
             password,
             password2
         });
+    }
+    if(isAuth){
+        history.push('/');
     }
     return (
         <form onSubmit={onSubmit}>
@@ -36,14 +40,20 @@ const Register=({registerUser})=>{
                 <label for="exampleInputPassword1">Repeat Password</label>
                 <input type="password" value={password2} onChange={(e)=>changePassword2(e.target.value)} name="password2" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
             </div>
-            <button type="submit">Accept</button>
+            <button className="btn btn-success" type="submit">Accept</button>
         </form>
     )
 };
+
+const mapStateToProps=(state)=>{
+    return{
+        isAuth: state.auth.isAuth
+    }
+}
 
 const mapDispatchToProps=(dispatch)=>{
     return bindActionCreators({
         registerUser
     }, dispatch);
 };
-export default connect(null, mapDispatchToProps)(Register);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Register));

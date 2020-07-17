@@ -4,11 +4,11 @@ import {Link} from 'react-router-dom';
 
 const UserList =({userList = []})=>{
     return (
-        <ul>
+        <ul className="list-group">
             {userList.map((user)=>{
                 return (
-                    <Link to={`/user/${user._id}`} key={user._id}>
-                        <li>{user.name}</li>
+                    <Link className="list-group-item text-center" to={`/user/${user._id}`} key={user._id}>
+                        {user.name}
                     </Link>
                 )
             })}

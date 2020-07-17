@@ -1,23 +1,14 @@
-/* eslint-disable */
 import React from 'react';
-import {Link} from 'react-router-dom';
+import DialogList from './dialog-list';
+import MessageList from './message-list';
 import './message-page.css';
 
-const MessagePage=({conservationList, id})=>{
-    let name;
-    let link;
+const MessagePage=({dialogList, id, messageList, getMessagesList, newMessage})=>{
     return(
-        <ul>
-            {conservationList.map((conservation)=>{
-                conservation.conservation.user1._id === id? (name = conservation.conservation.user2.name, link = conservation.conservation.user2._id) : (name = conservation.conservation.user1.name, link = conservation.conservation.user1._id)
-                return(
-                    <li key={conservation._id}>
-                        <Link to={`user/${link}`}><span>{name}</span></Link>
-                    <span>{conservation.sender.name}: &nbsp; {conservation.message}</span>
-                    </li>
-                )
-            })}
-        </ul>
+        <div className="row">
+            <DialogList dialogList={dialogList} id={id} getMessagesList={getMessagesList}/>
+            <MessageList messageList={messageList} id={id} newMessage={newMessage}/>
+        </div>
     )
 }
 

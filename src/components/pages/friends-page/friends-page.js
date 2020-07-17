@@ -7,7 +7,7 @@ const FriendsPage=({items, id})=>{
     let linkId;
     let name;
     return(
-        <ul>
+        <ul className="list-group">
             {items.map((item)=>{
                 item.user1._id === id? (
                     linkId = item.user2._id,
@@ -17,7 +17,9 @@ const FriendsPage=({items, id})=>{
                     name = item.user1.name
                 )
                 return(
-                    <Link to={`/user/${linkId}`} key={item._id}>{name}</Link>
+                    <Link className="list-group-item text-center" to={`/user/${linkId}`} key={item._id}>
+                        {name}
+                    </Link>
                 )
             })}
         </ul>

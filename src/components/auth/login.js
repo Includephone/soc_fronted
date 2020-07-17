@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import {loginUser} from '../../actions';
 
-const Login=({auth, loginUser})=>{
+const Login=({auth, loginUser, history})=>{
     const [email, changeEmail] = useState('');
     const [password, changePassword] = useState('');
     const onSubmit=(e)=>{
@@ -13,6 +14,9 @@ const Login=({auth, loginUser})=>{
             password
         })
     };
+    if(auth.isAuth){
+        history.push('/');
+    }
     return(
         <React.Fragment>
             <form onSubmit={onSubmit}>
@@ -26,7 +30,6 @@ const Login=({auth, loginUser})=>{
                 </div>
                 <button className="btn btn-success" type="submit">Authorization</button>
             </form>
-            <button onClick={()=>console.log(auth)}>console log</button>
         </React.Fragment>        
     );
 };
@@ -42,4 +45,4 @@ const mapDispatchToProps=(dispatch)=>{
         loginUser
     }, dispatch);
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

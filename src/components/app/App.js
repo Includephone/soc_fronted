@@ -10,6 +10,7 @@ import SearchPage from '../pages/search-page';
 import UserPageContainer from '../pages/user-page';
 import FriendsPageContainer from '../pages/friends-page';
 import MessagePageContainer from '../pages/messages-page';
+import HomePageContainer from '../pages/home-page';
 import AuthRoute from '../../utils/authRoute';
 import setAuthToken from '../../utils/setAuthToken';
 import { logOutUser, setCurrentUser } from '../../actions';
@@ -32,12 +33,15 @@ const App=()=>{
       <div className="component">
         <Router>
           <Header/>
-          <Route path="/register" component={Register}/>
-          <Route path="/login" component={Login}/>
-          <AuthRoute path="/search" component={SearchPage}/>
-          <AuthRoute path="/user/:id" component={UserPageContainer}/>
-          <AuthRoute path="/friends" component={FriendsPageContainer}/>
-          <AuthRoute path="/messages" component={MessagePageContainer}/>
+          <div className="container">
+            <Route path="/register" component={Register}/>
+            <Route path="/login" component={Login}/>
+            <AuthRoute path="/search" component={SearchPage}/>
+            <AuthRoute path="/user/:id" component={UserPageContainer}/>
+            <AuthRoute path="/friends" component={FriendsPageContainer}/>
+            <AuthRoute path="/messages" component={MessagePageContainer}/>
+            <Route path="/" exact component={HomePageContainer}/>
+          </div>
         </Router>
       </div>
     </Provider>
