@@ -1,4 +1,5 @@
 Stack: React.js, Redux, Redux-thunk, React Router
+
 Features:
 - Registration and authorization pages;
 - Friend and message system;
